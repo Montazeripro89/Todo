@@ -6,15 +6,9 @@ function IReset(props) {
     const Works = props.Works;
     const allWorks = props.allWorks;
     const { deleteTodoHandler, editTodoHandler } = props;
-
-    const [Click, setClick] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [textValue, setTextValue] = useState(Works.Work);
-
-    function Scratch() {
-        setClick((prev) => !prev);
-    }
-
+    const [status , setStatus] = useState(Works.status);
     function editModeHandler() {
         setEditMode(!editMode);
     }
@@ -69,14 +63,14 @@ function IReset(props) {
                     <div>
                         <input
                             type="checkbox"
-                            checked={Click}
+                            checked={status}
                             onChange={() => {}}
-                            onClick={Scratch}
+                            onClick={() => setStatus(!status)}
                         />
                         <p
                             className={`inline-block mt-1 ml-2 text-gray-600`}
                             style={{
-                                textDecorationLine: Click ? "line-through" : "none"
+                                textDecorationLine: status ? "line-through" : "none"
                             }}
                         >
                             {Works.Work}

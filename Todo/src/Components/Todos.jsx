@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 function Todos() {
     const [Works, setWorks] = useState([
-        { id: uuidv4(), Work: 'Go to school 1' },
-        { id: uuidv4(), Work: 'Go to school 2' }
+        { id: uuidv4(), Work: 'Go to school 1', status: false },
+        { id: uuidv4(), Work: 'Go to school 2', status : false }
     ]);
 
     function addTodo(Event) {
