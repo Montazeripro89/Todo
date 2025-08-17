@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IReset from "./In-Components/IReset";
 import ListReset from "./In-Components/ListReset";
 import { v4 as uuidv4 } from 'uuid';
@@ -8,6 +8,19 @@ function Todos() {
         { id: uuidv4(), Work: 'Go to school 1', status: false },
         { id: uuidv4(), Work: 'Go to school 2', status : false }
     ]);
+
+    function checkStatus(WorksItem) {
+        const newWorks = Works.map(item =>
+            item.id === WorksItem.id
+                ? { ...item, status: !item.status } 
+                : item
+        );
+        setWorks(newWorks);  
+    }
+
+    useEffect(() => {
+        console.log("Works تغییر کرد:", Works);
+    }, [Works]); 
 
     function addTodo(Event) {
         let Value = Event.target.value.trim();
@@ -68,6 +81,7 @@ function Todos() {
                                 allWorks={Works}
                                 deleteTodoHandler={deleteTodoHandler}
                                 editTodoHandler={editTodoHandler} 
+                                checkStatus ={checkStatus}
                                 key={WorksItem.id}
                             />
                         ))}

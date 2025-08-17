@@ -5,10 +5,10 @@ import EditIcon from "../../assets/Icon/EditIcon";
 function IReset(props) {
     const Works = props.Works;
     const allWorks = props.allWorks;
+    const checkStatus = props.checkStatus;
     const { deleteTodoHandler, editTodoHandler } = props;
     const [editMode, setEditMode] = useState(false);
     const [textValue, setTextValue] = useState(Works.Work);
-    const [status , setStatus] = useState(Works.status);
     function editModeHandler() {
         setEditMode(!editMode);
     }
@@ -63,14 +63,14 @@ function IReset(props) {
                     <div>
                         <input
                             type="checkbox"
-                            checked={status}
+                            checked={Works.status}
                             onChange={() => {}}
-                            onClick={() => setStatus(!status)}
+                            onClick={() => checkStatus(Works)}
                         />
                         <p
                             className={`inline-block mt-1 ml-2 text-gray-600`}
                             style={{
-                                textDecorationLine: status ? "line-through" : "none"
+                                textDecorationLine: Works.status ? "line-through" : "none"
                             }}
                         >
                             {Works.Work}
